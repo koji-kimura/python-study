@@ -53,9 +53,52 @@ class Deck:
       return 
     return self.cards.pop()
 
-card1 = Card(10,2)
-card2 = Card(11,3)
+class Player:
+  def __init__(self,name):
+    self.wins = 0
+    self.card = None
+    self.name = name
 
-card = Card(3,2)
+class Game:
+  def __init__(self):
+    name1 = input("プレイヤー1の名前")
+    name2 = input("プレイヤー2の名前")
+    self.deck = Deck()
+    self.p1 = Player(name1)
+    self.p2 = Player(name2)
 
-print(card)
+  def wins(self,winner):
+    w = "このラウンドは{}が勝ちました"
+    w = w.format(winner)
+    print(w)
+  
+  def play_game(self):
+    cards = self.deck.cards
+    print("戦争始めます")
+    while len(cards) >= 2:
+      m = "qで終了、それ以外のキーでPlay:"
+      response = input(m)
+      if response == 'q':
+        break
+      p1c = self.deck.rm_card()
+      p2c = self.deck.rm_card()
+      p1n = self.p1.name
+      p2n = self.p2.name
+      self.draw(p1n,p1c,p2n,p2c)
+      if p1c > p2c:
+        self.p1.wins += 1
+        self.wins(self.p1.name)
+      else:
+        self.p2.wins += 1
+        self.wins(self.p2.name)
+    win = self.winner(self.p1,self.p2)
+    print("ゲーム終了、{}の勝利です".format(win))
+
+  def winner(self,p1,p2):
+    if p1.wins > p2.wins:
+      return p1.wins
+    if p2.wins > p1.wins:
+      return p2.wins
+    return "引き分け"
+game = Game()
+game.play_game()
