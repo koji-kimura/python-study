@@ -71,6 +71,11 @@ class Game:
     w = "このラウンドは{}が勝ちました"
     w = w.format(winner)
     print(w)
+
+  def draw(self,p1n,p1c,p2n,p2c):
+    d = "{}は{}、{}は{}を引きました"
+    d = d.format(p1n,p1c,p2n,p2c)
+    print(d) 
   
   def play_game(self):
     cards = self.deck.cards
