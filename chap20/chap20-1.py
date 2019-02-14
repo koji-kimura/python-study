@@ -1,4 +1,6 @@
 import urllib.request
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
 from bs4 import BeautifulSoup
 
 class Scraper:
@@ -12,5 +14,5 @@ class Scraper:
         for tag in soup.find_all('a'):
             print(tag.get('href'))
 
-news = 'https://news.google.com/'
+news = 'https://news.google.co.jp'
 Scraper(news).scrape()
