@@ -19,12 +19,22 @@ class Stack:
     return len(self.items)
 
 stack = Stack()
-for c in "Hello":
+for c in "yesterday":
   stack.push(c)
 
 reverse = ""
 
 while stack.size():
-  reverse += stack.pop()
+  reverse+= stack.pop()
 
 print(reverse)
+
+stack2 = Stack()
+for c2 in [1,2,3,4,5]:
+  stack2.push(c2)
+
+reverse2 = []
+for i in range(len(stack2.items)):
+    reverse2.append(stack2.pop())
+
+print(reverse2)
